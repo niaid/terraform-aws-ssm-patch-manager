@@ -41,9 +41,9 @@ data "aws_iam_policy_document" "bucket_policy" {
 module "ssm_patch_log_s3_bucket" {
   count   = local.create_log_bucket ? 1 : 0
   source  = "cloudposse/s3-bucket/aws"
-  version = "2.0.0"
+  version = "3.1.2"
 
-  acl                     = "private"
+  s3_object_ownership     = "BucketOwnerEnforced"
   versioning_enabled      = var.ssm_bucket_versioning_enable
   source_policy_documents = [local.bucket_policy]
   context                 = module.ssm_patch_log_s3_bucket_label.context
