@@ -15,6 +15,7 @@ module "ssm_patch_log_s3_bucket_label" {
   enabled = local.create_log_bucket
   # attributes = ["scan-window"]
   context = module.this.context
+  name    = local.bucket_name 
 }
 data "aws_iam_policy_document" "bucket_policy" {
   count = local.create_log_bucket ? 1 : 0
@@ -44,7 +45,7 @@ module "ssm_patch_log_s3_bucket" {
   source  = "cloudposse/s3-bucket/aws"
   version = "3.1.2"
 
-  bucket_name             = local.bucket_name
+  #bucket_name             = local.bucket_name
   s3_object_ownership     = "BucketOwnerEnforced"
   versioning_enabled      = var.ssm_bucket_versioning_enable
   source_policy_documents = [local.bucket_policy]
