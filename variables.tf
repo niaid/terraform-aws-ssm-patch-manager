@@ -215,6 +215,12 @@ variable "ssm_bucket_policy" {
   default     = null
 }
 
+variable "ssm_bucket_name" {
+  type        = string
+  description = "Bucket Name used for the patch log. If no bucket name is provided the module will use the context name."
+  default     = null
+}
+
 variable "bucket_id" {
   type        = string
   description = "The bucket ID to use for the patch log. If no bucket ID is provided, the module will create a new one."

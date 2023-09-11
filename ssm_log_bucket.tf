@@ -4,6 +4,7 @@ locals {
   create_log_bucket = local.enabled && var.bucket_id == null
   bucket_id         = var.bucket_id != null ? var.bucket_id : module.ssm_patch_log_s3_bucket_label.id
   bucket_policy     = var.ssm_bucket_policy != null ? var.ssm_bucket_policy : try(data.aws_iam_policy_document.bucket_policy[0].json, "")
+  bucket_name       = var.ssm_bucket_name != null ? var.ssm_bucket_name : module.this.context.name
 }
 
 
